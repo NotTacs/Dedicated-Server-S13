@@ -40,5 +40,4 @@ void FortAthenaLivingWorldManager::Setup()
 	UFortHookingLibrary::Get()->Hook(0xD45260, LivingWorldManagerRegisterPointProvider);
 	UFortHookingLibrary::Get()->Hook(0xD45270, LivingWorldManagerUnregisterPointProvider);
 	UFortHookingLibrary::Get()->ExecHook(UObject::FindObjectFast<UFunction>("LivingWorldManagerGenerateEvents"), LivingWorldManagerGenerateEvents);
-
 }

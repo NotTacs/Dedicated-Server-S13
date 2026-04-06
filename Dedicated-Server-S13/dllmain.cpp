@@ -10,6 +10,7 @@
 #include "FortniteGame/Source/FortniteGame/Public/Components/FortControllerComponent_Aircraft.h"
 #include "FortniteGame/Source/FortniteGame/Public/Athena/FortAthenaLivingWorldManager.h"
 #include "FortniteGame/Source/FortniteGame/Public/Cosmetics/CosmeticLoadoutOwnerInterface.h"
+#include "FortniteGame/Source/FortniteAI/Public/Athena/AI/FortAthenaAIBotCustomizationData.h"
 
 DWORD WINAPI Main(LPVOID lpThread)
 {
@@ -31,6 +32,7 @@ DWORD WINAPI Main(LPVOID lpThread)
     AthenaNavSystemConfig::Setup();
     FortAthenaLivingWorldManager::Setup();
     CosmeticLoadoutOwnerInterface::Setup();
+    FortAthenaAIBotCustomizationData::Setup();
     UFortHookingLibrary::Get()->Hook(0x3303E30, UFortHookingLibrary::ReturnTrueHook); //CanCreateInCurrentContext
     UFortHookingLibrary::Get()->Hook(0x22FF0B0, UFortHookingLibrary::EmptyHook); //ChangeGameSessionId
 

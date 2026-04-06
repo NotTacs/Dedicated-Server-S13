@@ -8,8 +8,11 @@ void CosmeticLoadoutOwnerInterface::SetCosmeticLoadout(ICosmeticLoadoutOwner* __
 	printf("Controller: %s\n", Controller->GetName().c_str());
 	if (AFortAthenaAIBotController* AIController = Cast<AFortAthenaAIBotController>(Controller))
 	{
-		CosmeticLoadout = &AIController->BotData->CharacterCustomization->CustomizationLoadout;
+		printf("Character: %s\n", CosmeticLoadout->Character->GetName().c_str());
 		AIController->CosmeticLoadoutBC = *CosmeticLoadout;
+
+		static void (*ApplyCharacterCustomization)(void* PlayerState, void* Pawn) = decltype(ApplyCharacterCustomization)(InSDKUtils::GetImageBase() + 0x28455C0);
+		ApplyCharacterCustomization(AIController->PlayerState, AIController->PlayerBotPawn);
 	}
 }
 

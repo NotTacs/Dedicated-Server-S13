@@ -121,9 +121,6 @@ bool FortGameModeAthena::ReadyToStartMatch(AFortGameModeAthena* __this)
 
 		UWorld::GetWorld()->AISystem->PlayerBotManager = __this->ServerBotManager;
 
-		auto Manager = FortAthenaLivingWorldManager::GetCurrent(UWorld::GetWorld());
-		Manager->LagerEnabled.Value = 1;
-
 		__this->bWorldIsReady = true;
 
 		TArray<AActor*> Actors;

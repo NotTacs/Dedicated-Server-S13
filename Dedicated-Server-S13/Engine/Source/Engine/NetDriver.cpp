@@ -14,6 +14,14 @@ void NetDriver::TickFlush(UNetDriver* __this)
 		UKismetSystemLibrary::ExecuteConsoleCommand(UWorld::GetWorld(), L"startaircraft", nullptr);
 	}
 
+	if (GetAsyncKeyState(VK_F9) & 1)
+	{
+		AFortGameModeAthena* GameMode = Cast<AFortGameModeAthena>(UWorld::GetWorld()->AuthorityGameMode);
+		UFortAthenaAISpawnerData* SpawnerData = StaticLoadObject<UFortAthenaAISpawnerData>("/SpicySake/AISpawnerData/Parent/AISpawnerData_SpicySake_Parent_BP.Default__AISpawnerData_SpicySake_Parent_BP_C");
+		auto List = SpawnerData->CreateComponentListFromClass(SpawnerData->Class, UWorld::GetWorld());
+		GameMode->ServerBotManager->SpawnAI(__this->ClientConnections[0]->PlayerController->Pawn->K2_GetActorLocation(), {}, List);
+	}
+
 	return Originals::TickFlush(__this);
 }
 

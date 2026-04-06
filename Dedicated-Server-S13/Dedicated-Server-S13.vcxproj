@@ -155,6 +155,7 @@
     <ClInclude Include="Engine\Classes\Engine\NetDriver.h" />
     <ClInclude Include="Engine\Classes\Engine\World.h" />
     <ClInclude Include="FortniteGame\Source\FortniteAI\Public\AI\Navigation\AthenaNavSystem.h" />
+    <ClInclude Include="FortniteGame\Source\FortniteAI\Public\Athena\AI\FortAthenaAIBotCustomizationData.h" />
     <ClInclude Include="FortniteGame\Source\FortniteGame\Public\Athena\FortAthenaLivingWorldManager.h" />
     <ClInclude Include="FortniteGame\Source\FortniteGame\Public\Athena\FortGameModeAthena.h" />
     <ClInclude Include="FortniteGame\Source\FortniteGame\Public\Athena\FortPlayerControllerAthena.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="Engine\Source\Engine\NetDriver.cpp" />
     <ClCompile Include="Engine\Source\Engine\World.cpp" />
     <ClCompile Include="FortniteGame\Source\FortniteAI\Private\AI\Navigation\AthenaNavSystem.cpp" />
+    <ClCompile Include="FortniteGame\Source\FortniteAI\Private\Athena\AI\FortAthenaAIBotCustomizationData.cpp" />
     <ClCompile Include="FortniteGame\Source\FortniteGame\Private\Athena\FortAthenaLivingWorldManager.cpp" />
     <ClCompile Include="FortniteGame\Source\FortniteGame\Private\Athena\FortGameModeAthena.cpp" />
     <ClCompile Include="FortniteGame\Source\FortniteGame\Private\Athena\FortPlayerControllerAthena.cpp" />
