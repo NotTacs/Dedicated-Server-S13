@@ -399,3 +399,10 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+Build/
+*.dll
+
+*.obj
+
+Intermediate/
