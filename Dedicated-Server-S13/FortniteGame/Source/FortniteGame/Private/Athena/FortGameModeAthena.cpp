@@ -102,8 +102,8 @@ bool FortGameModeAthena::ReadyToStartMatch(AFortGameModeAthena* __this)
 		GameState->OnRep_AdditionalPlaylistLevelsStreamed();
 
 		InitializePlaylistDataPreDataLoad(GameState, 0);
-		static void (*LoadPlaylistData)(AFortGameStateAthena*) = decltype(LoadPlaylistData)(InSDKUtils::GetImageBase() + 0x1D8FA90);
-		LoadPlaylistData(GameState);
+		GameState->OnRep_CurrentPlaylistInfo();
+		GameState->OnRep_CurrentPlaylistId();
 
 		if (!__this->ServerBotManager)
 		{

@@ -85,7 +85,21 @@ public:
 struct FGameplayTag
 {
 public:
+	FGameplayTag() = default;
+
+	FGameplayTag(const FName& TagName)
+		: TagName(TagName)
+	{
+	}
+public:
+
 	class FName                                   TagName;                                           // 0x0000(0x0008)(Edit, ZeroConstructor, EditConst, SaveGame, IsPlainOldData, NoDestructor, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+
+public:
+	bool operator==(const FGameplayTag& Other)
+	{
+		return TagName.ToString() == Other.TagName.ToString();
+	}
 };
 
 // ScriptStruct GameplayTags.GameplayTagContainer
@@ -95,6 +109,12 @@ struct FGameplayTagContainer final
 public:
 	TArray<struct FGameplayTag>                   GameplayTags;                                      // 0x0000(0x0010)(BlueprintVisible, ZeroConstructor, SaveGame, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
 	TArray<struct FGameplayTag>                   ParentTags;                                        // 0x0010(0x0010)(ZeroConstructor, Transient, Protected, HasGetValueTypeHash, NativeAccessSpecifierProtected)
+
+public:
+	bool operator==(const FGameplayTagContainer& Other)
+	{
+		return GameplayTags == Other.GameplayTags && ParentTags == Other.ParentTags;
+	}
 };
 
 // ScriptStruct GameplayTags.GameplayTagCreationWidgetHelper

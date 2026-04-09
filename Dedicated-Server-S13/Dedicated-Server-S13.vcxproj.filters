@@ -63,6 +63,9 @@
     <ClInclude Include="FortniteGame\Source\FortniteAI\Public\Athena\AI\FortAthenaAIBotCustomizationData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FortniteGame\Source\FortniteGame\Public\Athena\FortPoiVolume.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -126,6 +129,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FortniteGame\Source\FortniteAI\Private\Athena\AI\FortAthenaAIBotCustomizationData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FortniteGame\Source\FortniteGame\Private\Athena\FortPoiVolume.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

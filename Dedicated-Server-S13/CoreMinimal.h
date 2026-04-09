@@ -150,3 +150,17 @@ inline T* SpawnActor(FTransform Transform = {}, AActor* Owner = nullptr, UClass*
 	AActor* Start = UGameplayStatics::BeginDeferredActorSpawnFromClass(UWorld::GetWorld(), OverrideClass, Transform, ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn, Owner);
 	return (T*)UGameplayStatics::FinishSpawningActor(Start, Transform);
 }
+
+template<typename T>
+inline std::vector<T*> GetObjectsOfClass()
+{
+	std::vector<T*> Objects;
+	for (UObject* Object : UObject::GObjects)
+	{
+		if (Object->IsA(T::StaticClass()))
+		{
+			Objects.push_back((T*)Object);
+		}
+	}
+	return Objects;
+}

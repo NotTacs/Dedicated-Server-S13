@@ -177,11 +177,16 @@ ClassType* GetDefaultObjImpl()
 
 // Predefined struct FUObjectItem
 // 0x0018 (0x0018 - 0x0000)
-struct FUObjectItem final
+struct FUObjectItem
 {
-public:
-	class UObject*                                Object;                                            // 0x0000(0x0008)(NOT AUTO-GENERATED PROPERTY)
-	uint8                                         Pad_8[0x10];                                       // 0x0008(0x0010)(Fixing Struct Size After Last Property [ Dumper-8 ])
+	// Pointer to the allocated object
+	class UObject* Object;
+	// Internal flags
+	int32 Flags;
+	// UObject Owner Cluster Index
+	int32 ClusterRootIndex;
+	// Weak Object Pointer Serial number associated with the object
+	int32 SerialNumber;
 };
 
 // Predefined struct TUObjectArray
@@ -226,6 +231,20 @@ public:
 		if (!ChunkPtr) return nullptr;
 		
 		return ChunkPtr[InChunkIdx].Object;
+	}
+
+	inline int32 GetSerialIndexByIndex(const int32 Index) const
+	{
+		const int32 ChunkIndex = Index / ElementsPerChunk;
+		const int32 InChunkIdx = Index % ElementsPerChunk;
+
+		if (Index < 0 || ChunkIndex >= NumChunks || Index >= NumElements)
+			return -1;
+
+		FUObjectItem* ChunkPtr = GetDecrytedObjPtr()[ChunkIndex];
+		if (!ChunkPtr) return -1;
+
+		return ChunkPtr[InChunkIdx].SerialNumber;
 	}
 };
 

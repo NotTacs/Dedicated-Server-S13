@@ -11,6 +11,7 @@
 #include "FortniteGame/Source/FortniteGame/Public/Athena/FortAthenaLivingWorldManager.h"
 #include "FortniteGame/Source/FortniteGame/Public/Cosmetics/CosmeticLoadoutOwnerInterface.h"
 #include "FortniteGame/Source/FortniteAI/Public/Athena/AI/FortAthenaAIBotCustomizationData.h"
+#include "FortniteGame/Source/FortniteGame/Public/Athena/FortPoiVolume.h"
 
 DWORD WINAPI Main(LPVOID lpThread)
 {
@@ -33,6 +34,7 @@ DWORD WINAPI Main(LPVOID lpThread)
     FortAthenaLivingWorldManager::Setup();
     CosmeticLoadoutOwnerInterface::Setup();
     FortAthenaAIBotCustomizationData::Setup();
+    FortPoiVolume::Setup();
     UFortHookingLibrary::Get()->Hook(0x3303E30, UFortHookingLibrary::ReturnTrueHook); //CanCreateInCurrentContext
     UFortHookingLibrary::Get()->Hook(0x22FF0B0, UFortHookingLibrary::EmptyHook); //ChangeGameSessionId
 

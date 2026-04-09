@@ -68,6 +68,46 @@ public:
 	}
 };
 
+template< class ObjectType>
+class TSharedPtr
+{
+public:
+	ObjectType* Object;
+
+	int32 SharedReferenceCount;
+	int32 WeakReferenceCount;
+
+	FORCEINLINE ObjectType* Get()
+	{
+		return Object;
+	}
+	FORCEINLINE ObjectType* Get() const
+	{
+		return Object;
+	}
+	FORCEINLINE ObjectType& operator*()
+	{
+		return *Object;
+	}
+	FORCEINLINE const ObjectType& operator*() const
+	{
+		return *Object;
+	}
+	FORCEINLINE ObjectType* operator->()
+	{
+		return Object;
+	}
+	FORCEINLINE ObjectType* operator->() const
+	{
+		return Object;
+	}
+};
+
+struct FStreamableHandle
+{
+	
+};
+
 // Class LagerRuntime.FortAthenaLivingWorldManager
 // 0x0240 (0x02F0 - 0x00B0)
 class UFortAthenaLivingWorldManager : public UGameStateComponent
@@ -84,6 +124,41 @@ public:
 	TArray<TSubclassOf<class APawn>>              LoadedPawnClasses;                                 // 0x0238(0x0010)(Net, ZeroConstructor, Transient, UObjectWrapper, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
 	class AFortGameStateAthena*                   CachedGameState;                                   // 0x0248(0x0008)(ZeroConstructor, Transient, IsPlainOldData, NoDestructor, HasGetValueTypeHash, NativeAccessSpecifierPrivate)
 	uint8                                         Pad_250[0xA0];                                     // 0x0250(0x00A0)(Fixing Struct Size After Last Property [ Dumper-8 ])
+
+public:
+	float& NextEventGenerationTime()
+	{
+		return *reinterpret_cast<float*>(__int64(this) + 0x2B8);
+	}
+	int PendingLoadingAsetsCount()
+	{
+		return *reinterpret_cast<int*>(__int64(this) + 0x250);
+	}
+
+	TSharedPtr<FStreamableHandle>& AISpawnerDataStreamHandle()
+	{
+		return *reinterpret_cast<TSharedPtr<FStreamableHandle>*>(__int64(this) + 0x278);
+	}
+
+	TSharedPtr<FStreamableHandle>& LoadPrimaryAssetHandle()
+	{
+		return *reinterpret_cast<TSharedPtr<FStreamableHandle>*>(__int64(this) + 0x288);
+	}
+
+	TArray<TSoftClassPtr<UClass>>& PendingLoadingSpawnerData()
+	{
+		return *reinterpret_cast<TArray<TSoftClassPtr<UClass>>*>(__int64(this) + 0x2A8);
+	}
+
+	TArray<FAssetData>& PendingLoadingAssetData()
+	{
+		return *reinterpret_cast<TArray<FAssetData>*>(__int64(this) + 0x298);
+	}
+
+	bool& bToggleActorOnMinimap()
+	{
+		return *reinterpret_cast<bool*>(__int64(this) + 0x2E8);
+	}
 
 public:
 	static void LivingWorldManagerRegisterPointProvider(class AActor* PointProvider);
